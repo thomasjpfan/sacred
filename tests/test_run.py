@@ -212,7 +212,7 @@ def test_unobserved_run_doesnt_emit(run):
     assert not observer.failed_event.called
 
 
-def test_stdout_capturing_no(run, capsys):
+def test_stdout_capturing_no(capsys, run):
     def print_mock_progress():
         for i in range(10):
             print(i, end="")
@@ -225,7 +225,7 @@ def test_stdout_capturing_no(run, capsys):
     assert run.captured_out == ''
 
 
-def test_stdout_capturing_sys(run, capsys):
+def test_stdout_capturing_sys(capsys, run):
     def print_mock_progress():
         for i in range(10):
             print(i, end="")
@@ -240,7 +240,7 @@ def test_stdout_capturing_sys(run, capsys):
 
 @pytest.mark.skipif(sys.platform.startswith('win'),
                     reason="does not work on windows")
-def test_stdout_capturing_fd(run, capsys):
+def test_stdout_capturing_fd(capsys, run):
     def print_mock_progress():
         for i in range(10):
             print(i, end="")
@@ -253,7 +253,7 @@ def test_stdout_capturing_fd(run, capsys):
     assert run.captured_out == '0123456789'
 
 
-def test_captured_out_filter(run, capsys):
+def test_captured_out_filter(capsys, run):
     def print_mock_progress():
         sys.stdout.write('progress 0')
         sys.stdout.flush()
