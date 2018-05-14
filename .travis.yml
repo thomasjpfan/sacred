@@ -13,7 +13,7 @@ matrix:
   - python: "3.5"
     env: TOX_ENV=coverage
 script:
-  - tox -e $TOX_ENV
+  - tox -e $TOX_ENV -- --count=1000 -x tests/test_run.py
 
 branches:
   only:
